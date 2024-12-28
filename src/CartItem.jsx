@@ -20,10 +20,15 @@ const CartItem = ({ onContinueShopping }) => {
 
 
   const handleIncrement = (item) => {
+    let x = { ...item };
+    x.quantity++
+    dispatch(updateQuantity(x));
   };
 
   const handleDecrement = (item) => {
-   
+    let x = { ...item };
+    x.quantity--
+    dispatch(updateQuantity(x));
   };
 
   const handleRemove = (item) => {
