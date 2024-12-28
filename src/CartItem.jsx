@@ -7,6 +7,7 @@ const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
   const [addedToCart, setAddedToCart] = useState({});
+  
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
@@ -37,7 +38,14 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    let totalCost =0;
+    var ncost = Number(item.cost.replace("$",""));
+    var nqut = Number(item.quantity);
+    totalCost = ncost * nqut;
+    return totalCost.toString();
   };
+
+  
 
   return (
     <div className="cart-container">
