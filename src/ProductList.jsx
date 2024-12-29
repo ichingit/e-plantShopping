@@ -1,4 +1,5 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
+//import React, { useState,useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './ProductList.css';
 import CartItem from './CartItem';
@@ -260,8 +261,21 @@ const handlePlantsClick = (e) => {
         ...prevState,
         [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
       }));
+    var x = document.getElementsByClassName("product-title");
+    var y = document.getElementsByClassName("product-button");
+    for (var i = 0; i < x.length; i++) {
+        if (x[i].innerHTML==product.name){
+            console.log(y[i].innerHTML);
+            y[i].disabled=true;
+            y[i].innerHTML="Added to Cart";
+            y[i].style["background-color"] = "#cfcccc";
+            y[i].style["cursor"] = "none";  
+        }  
+          
+    }
      
   };
+    
   const TotalQuan= () => {
     let TotQun = 0;
     for (let i = 0; i < cart.length; i++) {
@@ -273,7 +287,7 @@ const handlePlantsClick = (e) => {
   }
     return (
         <div>
-             <div className="navbar" style={styleObj}>
+           <div className="navbar" style={styleObj}>
             <div className="tag">
                <div className="luxury">
                <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
@@ -309,7 +323,7 @@ const handlePlantsClick = (e) => {
                         <div className="product-cost">{plant.cost}</div>
                         {/*Similarly like the above plant.name show other details like description and cost*/}
                         <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
-                    </div>
+                     </div>
                     ))}
                 </div>
             </div>
