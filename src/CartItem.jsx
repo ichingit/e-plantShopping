@@ -20,7 +20,9 @@ const CartItem = ({ onContinueShopping }) => {
         var nqut = Number(cart[i].quantity);
        TotalAmountAll += (ncost * nqut);
       }
+    
     return TotalAmountAll.toString();
+   
   };
 
   const handleContinueShopping = (e) => {
@@ -41,8 +43,10 @@ const CartItem = ({ onContinueShopping }) => {
 
   const handleDecrement = (item) => {
     let x = { ...item };
-    x.quantity--
-    dispatch(updateQuantity(x));
+        if  (x.quantity>0){
+        x.quantity--
+        dispatch(updateQuantity(x));
+        }
   };
 
   const handleRemove = (item) => {
@@ -64,7 +68,7 @@ const CartItem = ({ onContinueShopping }) => {
         <div className="cart-container">
             <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
             <div>
-                {cart.map(item => (
+              {cart.map(item => (
                 <div className="cart-item" key={item.name}>
                     <img className="cart-item-image" src={item.image} alt={item.name} />
                     <div className="cart-item-details">
@@ -88,6 +92,8 @@ const CartItem = ({ onContinueShopping }) => {
                 <button className="get-started-button1" onClick={(e) => handleCheckoutShopping(e)}>Checkout</button>
             </div>
         </div>
+           
+        
   );
 }
 
