@@ -21,7 +21,7 @@ const CartItem = ({ onContinueShopping }) => {
        TotalAmountAll += (ncost * nqut);
       }
     
-    return TotalAmountAll.toString();
+        return TotalAmountAll;
    
   };
 
@@ -43,14 +43,27 @@ const CartItem = ({ onContinueShopping }) => {
 
   const handleDecrement = (item) => {
     let x = { ...item };
-        if  (x.quantity>0){
+        if  (x.quantity!=1){
         x.quantity--
         dispatch(updateQuantity(x));
+        }
+        else{
+            handleRemove(item);
         }
   };
 
   const handleRemove = (item) => {
-    dispatch(removeItem(item));
+    if(cart.length>1){
+        dispatch(removeItem(item));
+    }else{
+        var a = document.getElementsByClassName("info-msg");
+        var b = document.getElementsByClassName("get-started-button1");
+        a[0].innerHTML="Add items to start a cart.Once you add plants your cart will appear here";
+        b[0].className="disabled";
+
+        dispatch(removeItem(item)); 
+    }
+    
   };
 
   // Calculate total cost based on quantity for an item
@@ -65,8 +78,12 @@ const CartItem = ({ onContinueShopping }) => {
   
 
   return (
-        <div className="cart-container">
-            <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
+    <div>
+    
+      <div className="cart-container">
+        {!cart.length==0 ? (
+           <div>
+            <h2 className="info-msg" style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
             <div>
               {cart.map(item => (
                 <div className="cart-item" key={item.name}>
@@ -92,8 +109,21 @@ const CartItem = ({ onContinueShopping }) => {
                 <button className="get-started-button1" onClick={(e) => handleCheckoutShopping(e)}>Checkout</button>
             </div>
         </div>
-           
-        
+        ):(
+            <div>
+            <h2 className="info-msg1" style={{ color: 'black' }}>"Add items to start a cart.Once you add plants your cart will appear here"</h2>
+            <br />
+            <br/>
+            <div className="continue_shopping_btn">
+                <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
+                <br />
+                
+            </div>
+            </div>
+                
+        )}  
+     </div> 
+    </div>   
   );
 }
 
