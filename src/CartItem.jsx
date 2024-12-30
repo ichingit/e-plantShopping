@@ -20,9 +20,7 @@ const CartItem = ({ onContinueShopping }) => {
         var nqut = Number(cart[i].quantity);
        TotalAmountAll += (ncost * nqut);
       }
-    
-        return TotalAmountAll;
-   
+    return TotalAmountAll;
   };
 
   const handleContinueShopping = (e) => {
@@ -32,8 +30,6 @@ const CartItem = ({ onContinueShopping }) => {
       const handleCheckoutShopping = (e) => {
         alert('Functionality to be added for future reference');
       };
-
-
 
   const handleIncrement = (item) => {
     let x = { ...item };
@@ -53,17 +49,7 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleRemove = (item) => {
-    if(cart.length>1){
         dispatch(removeItem(item));
-    }else{
-        var a = document.getElementsByClassName("info-msg");
-        var b = document.getElementsByClassName("get-started-button1");
-        a[0].innerHTML="Add items to start a cart.Once you add plants your cart will appear here";
-        b[0].className="disabled";
-
-        dispatch(removeItem(item)); 
-    }
-    
   };
 
   // Calculate total cost based on quantity for an item
@@ -75,14 +61,10 @@ const CartItem = ({ onContinueShopping }) => {
     return totalCost.toString();
   };
 
-  
-
   return (
-    <div>
-    
       <div className="cart-container">
         {!cart.length==0 ? (
-           <div>
+           <div className="cart-container">
             <h2 className="info-msg" style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
             <div>
               {cart.map(item => (
@@ -110,8 +92,9 @@ const CartItem = ({ onContinueShopping }) => {
             </div>
         </div>
         ):(
-            <div>
-            <h2 className="info-msg1" style={{ color: 'black' }}>"Add items to start a cart.Once you add plants your cart will appear here"</h2>
+            <div className="cart-container">
+            <h2 style={{ color: 'black' }}>"Add items to start a cart."</h2>
+            <h3 style={{ color: 'black' }}>"Once you add plants your cart will appear here"</h3>
             <br />
             <br/>
             <div className="continue_shopping_btn">
@@ -119,11 +102,9 @@ const CartItem = ({ onContinueShopping }) => {
                 <br />
                 
             </div>
-            </div>
-                
+            </div>    
         )}  
-     </div> 
-    </div>   
+     </div>   
   );
 }
 

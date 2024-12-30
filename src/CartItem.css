@@ -73,11 +73,7 @@
 .cart-item-delete:hover {
   background-color: #cc0000;
 }
-.disabled{
-    pointer-events: none;
-    opacity: 0;
-    
-}
+
 /* .cart-item-button-dec{
   background-color: red;
 }
