@@ -52,6 +52,29 @@ body {
 .product-grid h1{
     text-align:center;
 }
+
+.product-grid h1:before{
+    position: relative;
+    content: "";
+    width: 30%;
+    left: 35%;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-bottom: 5px solid rgb(161, 159, 159);
+    border-width: thin;
+}
+.product-grid h1:after{
+    position: relative;
+    content: "";
+    width: 30%;
+    left: 35%;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-bottom: 5px solid rgb(161, 159, 159);
+    border-width: thin;
+}
 .styleA {
     text-align:center;
 }
